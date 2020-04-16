@@ -1,0 +1,50 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Setting up test environment.
+      debug:
+        msg:
+          - '==============================================================='
+          - 'Pre tasks'
+          - '==============================================================='
+
+    - name: Ensure Python requirements installed.
+      apt:
+        name:
+          - python
+          - python-pip
+          - python-setuptools
+          - python3-pip
+          - python3-setuptools
+        state: present
+      changed_when: false
+
+    - name: Ensure Pip requirements installed.
+      pip:
+        name:
+          - flake8
+          - requests
+      become: false
+      changed_when: false
+
+  roles:
+    - role: sysconfig
+      configuration: https://is.gd/5gDcWa
+
+  post_tasks:
+    - name: Run verification tests.
+      debug:
+        msg:
+          - '================================================================'
+          - 'Post tasks'
+          - '================================================================'
+
+    - name: Verify nginx - graphite configuration applied.
+      stat:
+        path: /etc/nginx/sites-available/graphite.conf
+      register: st_res
+      failed_when: st_res.stat.isreg is not defined or not st_res.stat.isreg
+      become: true
