@@ -32,7 +32,9 @@
 
   roles:
     - role: sysconfig
-      system_skeleton: https://gitlab.com/huertico/server
+      configuration:
+        - item_path: https://is.gd/edLynV
+          item_expand: true
 
   post_tasks:
     - name: Run verification tests.
