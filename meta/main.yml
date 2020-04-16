@@ -37,5 +37,5 @@ dependencies:
       - "{{ system_skeleton | default([]) }}"
       - "{{ configuration | default([]) }}"
     titles: 'system_skeleton'
-    expand: true
+    expand: false
     secondary: false

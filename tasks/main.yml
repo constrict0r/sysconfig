@@ -20,7 +20,6 @@
     name:
       - git
       - rsync
-  become: true
   when: not ansible_check_mode
 
 - name: Apply skeleton repositories.

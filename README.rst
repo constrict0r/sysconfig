@@ -181,7 +181,7 @@ especified paths and URLs.
 If set to *false* each file path or URL found on system_skeleton will
 be treated as plain text.
 
-This variable is set to *true* by default.
+This variable is set to *false* by default.
 
 ::
 
