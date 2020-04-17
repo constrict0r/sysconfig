@@ -21,20 +21,3 @@ This role performs the following actions:
 
 - If the **configuration** variable is defined, clone the git system
   repositories listed on it into */*.
-
-This role expand files or URLs by default so you must write your items like:
-
-.. substitution-code-block:: bash
-
- |DEFAULT_VAR_NAME|:
-   - item_path: |DEFAULT_VAR_VALUE|
-     item_expand: false
-
-
-You can change this default behaviour by:
-
-- Setting the **expand** variable to *false*.
-
-Or
-
-- Add to an item the attribute **item_expand** setted to *true*.

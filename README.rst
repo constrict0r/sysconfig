@@ -83,23 +83,6 @@ This role performs the following actions:
 * If the **configuration** variable is defined, clone the git system
    repositories listed on it into */*.
 
-This role expand files or URLs by default so you must write your items
-like:
-
-::
-
-   system_skeleton:
-     - item_path: ['https://gitlab.com/huertico/server']
-       item_expand: false
-
-You can change this default behaviour by:
-
-* Setting the **expand** variable to *false*.
-
-Or
-
-* Add to an item the attribute **item_expand** setted to *true*.
-
 
 
 Usage
@@ -185,7 +168,7 @@ especified paths and URLs.
 If set to *false* each file path or URL found on system_skeleton will
 be treated as plain text.
 
-This variable is set to *false* by default.
+This variable is set to *true* by default.
 
 ::
 
@@ -228,8 +211,24 @@ This variable is empty by default.
 
    # Including from terminal.
    ansible localhost -m include_role -a name=constrict0r.sysconfig -K -e \
-       "{system_skeleton: [https://gitlab.com/huertico/server]}"
+       "{system_skeleton: [item_path: https://gitlab.com/huertico/server, item_expand: false]}"
 
+   # Or:
+   # Including from terminal.
+   ansible localhost -m include_role -a name=constrict0r.sysconfig -K -e \
+       "{system_skeleton:https://gitlab.com/huertico/server, expand: false}"
+
+   # Including on a playbook.
+   - hosts: servers
+     roles:
+       - role: constrict0r.sysconfig
+         system_skeleton:
+           - item_path: https://gitlab.com/huertico/server
+             item_expand: false
+           - item_path: https://gitlab.com/huertico/client
+             item_expand: false
+
+   # Or:
    # Including on a playbook.
    - hosts: servers
      roles:
@@ -237,10 +236,16 @@ This variable is empty by default.
          system_skeleton:
            - https://gitlab.com/huertico/server
            - https://gitlab.com/huertico/client
+         expand: false
 
    # To a playbook from terminal.
-   ansible-playbook -i tests/inventory tests/test-playbook.yml -K -e \
-       "{system_skeleton: [https://gitlab.com/huertico/server]}"
+   ansible-playbook -i inventory my-playbook.yml -K -e \
+       "{system_skeleton: [item_path: https://gitlab.com/huertico/server, item_expand: false]}"
+
+   # Or:
+   # To a playbook from terminal.
+   ansible-playbook -i inventory my-playbook.yml -K -e \
+       "{system_skeleton: [https://gitlab.com/huertico/server], expand: false}"
 
 
 configuration

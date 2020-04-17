@@ -6,7 +6,7 @@ The following variables are supported:
 expand
 ..............................................................
 
-.. include:: variable/expand.inc
+.. include:: part/variable/expand.inc
 
 system_skeleton
 ..............................................................

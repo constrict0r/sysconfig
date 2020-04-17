@@ -2,6 +2,5 @@
 # Example configuration with repositories to clone to /.
 
 system_skeleton:
-  - https://gitlab.com/huertico/server
-#  - item_path: https://gitlab.com/huertico/server
-#    item_expand: false
+  - item_path: https://gitlab.com/huertico/server
+    item_expand: false
