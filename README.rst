@@ -83,14 +83,18 @@ This role performs the following actions:
 * If the **configuration** variable is defined, clone the git system
    repositories listed on it into */*.
 
-This role do not expand files or URLs by default because the most
-common case is to specify URLs that points directly to a skeleton
-repository, so the default behaviour for this role is to treat file
-paths and URLs as plain text.
+This role expand files or URLs by default so you must write your items
+like:
 
-You can change the default behaviour by:
+::
 
-* Setting the **expand** variable to *true*.
+   system_skeleton:
+     - item_path: ['https://gitlab.com/huertico/server']
+       item_expand: false
+
+You can change this default behaviour by:
+
+* Setting the **expand** variable to *false*.
 
 Or
 
