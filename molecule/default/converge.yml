@@ -32,9 +32,7 @@
 
   roles:
     - role: sysconfig
-      configuration:
-        - item_path: https://is.gd/edLynV
-          item_expand: true
+      configuration: https://is.gd/edLynV
 
   post_tasks:
     - name: Run verification tests.
