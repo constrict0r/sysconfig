@@ -21,6 +21,7 @@
       - git
       - rsync
   when: not ansible_check_mode
+  become: true
 
 - name: Apply skeleton repositories.
   debug:
